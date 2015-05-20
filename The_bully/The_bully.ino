@@ -9,14 +9,14 @@ ZumoReflectanceSensorArray reflectanceSensors;
 #define LED 13
 
 // this might need to be tuned for different lighting conditions, surfaces, etc.
-#define QTR_THRESHOLD  900
+#define QTR_THRESHOLD  850
 
 // these might need to be tuned for different motor types
 #define REVERSE_SPEED     400
 #define TURN_SPEED        400
 #define FORWARD_SPEED     400
-#define REVERSE_DURATION  40
-#define TURN_DURATION     150
+#define REVERSE_DURATION  150
+//#define TURN_DURATION     150
 
 // Servo settings
 #define SERVO_PIN 11
@@ -102,7 +102,7 @@ void onwards() {
     motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
     delay(REVERSE_DURATION);
     motors.setSpeeds(TURN_SPEED, -TURN_SPEED);
-    delay(TURN_DURATION);
+    delay(random(50,400));
     motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED);
   }
   else if (sensor_values[5] < QTR_THRESHOLD)
@@ -111,7 +111,7 @@ void onwards() {
     motors.setSpeeds(-REVERSE_SPEED, -REVERSE_SPEED);
     delay(REVERSE_DURATION);
     motors.setSpeeds(-TURN_SPEED, TURN_SPEED);
-    delay(TURN_DURATION);
+    delay(random(50,400));
     motors.setSpeeds(FORWARD_SPEED, FORWARD_SPEED);
   }
   else
